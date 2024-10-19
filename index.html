@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Conselho Nacional dos Vicentinos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #00447c;
+            text-align: center;
+            overflow: hidden;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        header img {
+            max-height: 180px;
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+            position: relative;
+        }
+        nav ul li a {
+            color: #00447c;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 2px;
+        }
+        nav ul li a:hover {
+            color: #000;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            display: block;
+            background: #00447c;
+            transition: width .3s;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #00447c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        section h2 img {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f4f4f4;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            margin-top: 5px;
+            width: max-content;
+            opacity: 0;
+            transition: opacity 0.5s, height 0.5s;
+            height: 0;
+            overflow: hidden;
+        }
+        .dropdown-content button {
+            color: #00447c;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+        .dropdown-content button:hover {
+            background-color: #ddd;
+        }
+        .sub-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f4f4f4;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 2;
+            left: 100%; /* Isso faz a subjanela aparecer ao lado direito */
+            top: 0;
+            width: 200px;
+            opacity: 0;
+            transition: opacity 0.5s, height 0.5s;
+            height: 0;
+            overflow: hidden;
+        }
+        .sub-dropdown-content button {
+            padding: 10px;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+        .sub-dropdown-content button:hover {
+            background-color: #ddd;
+        }
+        .show {
+            display: block;
+            height: auto;
+            opacity: 1;
+        }
+        @media only screen and (max-width: 600px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            .dropdown-content, .sub-dropdown-content {
+                left: 0;
+                transform: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.postimg.cc/CLb1bMWq/CARAAAAAAAAAAAAAACA.png" alt="Padre José Gilmar Moreira">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" id="quem-somos-btn">Quem Somos</a>
+                <div class="dropdown-content" id="quem-somos-dropdown">
+                    <button onclick="location.href='https://example.com/historia'">•História</button>
+                    <button onclick="location.href='https://example.com/missao'">•Missão</button>
+                    <button onclick="location.href='https://example.com/diretoria'">•Diretoria</button>
+                </div>
+            </li>
+            <li><a href="#" id="unidades-btn">Unidades</a></li>
+            <li>
+                <a href="#" id="departamentos-btn">Departamentos</a>
+                <div class="dropdown-content" id="departamentos-dropdown">
+                    <button onclick="location.href='https://example.com/cca'">•CCA (Conferência de Crianças e Adolescentes)</button>
+                    <button onclick="location.href='https://example.com/cj'">•CJ (Comissão de Jovens)</button>
+                    <button id="decom-btn" onclick="toggleSubDropdown()">•DECOM (Departamento de Comunicação)</button>
+                    <div class="sub-dropdown-content" id="decom-sub-dropdown">
+                        <button onclick="location.href='https://example.com/site-decom'">•Site DECOM</button>
+                        <button onclick="location.href='https://example.com/galeria'">•Galeria Vicentina</button>
+                        <button onclick="location.href='https://example.com/materiais-decom'">•Materiais da DECOM</button>
+                    </div>
+                    <button onclick="location.href='https://example.com/ecado'">•ECAFO (Escola de Capacitação Antônio Frederico Ozanam)</button>
+                    <button onclick="location.href='https://example.com/projetossociais'">•Projetos Sociais</button>
+                    <button onclick="location.href='https://ssvpbrasil.org.br/'">•Conselho Particular</button>
+                    <button onclick="location.href='https://example.com/conferencias'">•Conferências</button>
+                    <button onclick="location.href='https://example.com/materias'">•Matérias da Secretaria</button>
+                </div>
+            </li>
+            <li><a href="#">Projetos</a></li>
+            <li><a href="#">Parceria</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="#" id="colaboradores-btn">Colaboradores</a>
+                <div class="dropdown-content" id="colaboradores-dropdown">
+                    <button onclick="location.href='https://example.com/ajude'">•Ajude</button>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <h2><img src="https://i.postimg.cc/VkdxqPtS/Design-sem-nome-1.png" alt="Novo Banner"></h2>
+        <p>Somos uma organização dedicada a ajudar os menos favorecidos em nossa comunidade. Com uma equipe dedicada e voluntária, trabalhamos para fazer a diferença na vida daqueles que mais precisam.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Conselho Nacional dos Vicentinos. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var deptBtn = document.getElementById('departamentos-btn');
+            var deptDropdown = document.getElementById('departamentos-dropdown');
+            var quemSomosBtn = document.getElementById('quem-somos-btn');
+            var quemSomosDropdown = document.getElementById('quem-somos-dropdown');
+            var colaboradoresBtn = document.getElementById('colaboradores-btn');
+            var colaboradoresDropdown = document.getElementById('colaboradores-dropdown');
+            var decomBtn = document.getElementById('decom-btn');
+            var decomSubDropdown = document.getElementById('decom-sub-dropdown');
+            
+            deptBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleDropdown(deptDropdown);
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!deptBtn.contains(event.target) && !deptDropdown.contains(event.target) && !decomSubDropdown.contains(event.target) && !decomBtn.contains(event.target)) {
+                    closeDropdown(deptDropdown);
+                    closeDropdown(decomSubDropdown);
+                }
+            });
+
+            quemSomosBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleDropdown(quemSomosDropdown);
+            });
+
+            colaboradoresBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleDropdown(colaboradoresDropdown);
+            });
+        });
+
+        function toggleDropdown(dropdown) {
+            dropdown.classList.toggle('show');
+        }
+
+        function closeDropdown(dropdown) {
+            dropdown.classList.remove('show');
+        }
+
+        function toggleSubDropdown() {
+            var subDropdown = document.getElementById('decom-sub-dropdown');
+            subDropdown.classList.toggle('show');
+        }
+
+        function closeSubDropdown(dropdown) {
+            dropdown.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
